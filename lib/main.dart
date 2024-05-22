@@ -53,7 +53,20 @@ class MainScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
+            /// On Android
+            /// Trust
+            /// Working fine, but without returning to the app from wallet
+            /// Metamask
+            /// Success connection, but endless "Connecting to MetaMask"
+            /// after reopening with requestAuth
             ///
+            ///
+            /// On iOS
+            /// Trust
+            /// `JsonRpcError: Method Unsupported (code: 10001)`
+            /// Metamask
+            /// Success connection, but without sign functionality
+            /// after reopening with requestAuth
             const Text('Authorization via modal'),
             FilledButton(
               onPressed: () => {AuthModal.authorize(context)},
