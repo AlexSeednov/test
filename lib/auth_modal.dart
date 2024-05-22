@@ -15,9 +15,6 @@ final class AuthModal {
   static W3MService? _w3mService;
 
   ///
-  static AuthClient? _authorizationClient;
-
-  ///
   static AuthRequestResponse? _authorizationRequest;
 
   ///
@@ -67,7 +64,6 @@ final class AuthModal {
     }
     _w3mService = null;
 
-    _authorizationClient = null;
     _authorizationRequest = null;
   }
 
@@ -82,7 +78,7 @@ final class AuthModal {
 
       _w3mService!.launchConnectedWallet();
 
-      _authorizationRequest = await _authorizationClient!.request(
+      _authorizationRequest = await _web3app!.requestAuth(
         params: authorizationParameters('Try to auth'),
         pairingTopic: _w3mService!.session!.pairingTopic,
       );
