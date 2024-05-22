@@ -19,9 +19,15 @@ class MainApp extends StatelessWidget {
             const Text('Test WC app'),
             FilledButton(
               onPressed: () => {
-                AuthDirectly.authorize(),
+                AuthDirectly.authorize('metamask'),
               },
-              child: const Text('Auth directly'),
+              child: const Text('Metamask Auth directly'),
+            ),
+            FilledButton(
+              onPressed: () => {
+                AuthDirectly.authorize('trust'),
+              },
+              child: const Text('Trus Auth directly'),
             ),
             FilledButton(
               onPressed: () => {},

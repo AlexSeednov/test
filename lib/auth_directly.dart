@@ -28,7 +28,7 @@ final class AuthDirectly {
   }
 
   ///
-  static Future<bool> authorize() async {
+  static Future<bool> authorize(String wallet) async {
     await prepare();
     try {
       _authorizationRequest = await _authorizationClient!.request(
@@ -38,7 +38,8 @@ final class AuthDirectly {
       final String connectionLink =
           Uri.encodeComponent(_authorizationRequest!.uri.toString());
 
-      final String link = 'trust://wc?uri=$connectionLink';
+      final String link = '$wallet://wc?uri=$connectionLink';
+      //'trust://wc?uri=$connectionLink';
       //'https://link.trustwallet.com/wc?uri=$connectionLink';
       //'metamask://wc?uri=$connectionLink';
       //'https://metamask.app.link/wc?uri=$connectionLink';
@@ -46,7 +47,7 @@ final class AuthDirectly {
 
       logInfo(info: 'Link to open for authorization - $link');
 
-      await launchUrlString(link);
+      await launchUrlString(link, mode: LaunchMode.externalApplication);
 
       final AuthResponse authResponse =
           await _authorizationRequest!.completer.future;
