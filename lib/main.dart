@@ -60,8 +60,9 @@ class MainApp extends StatelessWidget {
               /// Success connection, but without sign functionality
               /// after reopening with requestAuth
               ///
-              /// On iOS
-              ///
+              /// On iOS not working
+              /// Success connection, but without sign functionality
+              /// after reopening with requestAuth
               FilledButton(
                 onPressed: () => {
                   AuthWeb3Appp.authorize('metamask'),
@@ -72,8 +73,8 @@ class MainApp extends StatelessWidget {
               /// On Android
               /// Working fine, but without returning to the app from wallet
               ///
-              /// On iOS
-              ///
+              /// On iOS got error
+              /// `JsonRpcError: Method Unsupported (code: 10001)`
               FilledButton(
                 onPressed: () => {
                   AuthWeb3Appp.authorize('trust'),
