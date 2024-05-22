@@ -1,2 +1,3 @@
-# test
-Common test app
+# test_app
+
+A new Flutter project.
