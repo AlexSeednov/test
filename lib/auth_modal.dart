@@ -1,12 +1,19 @@
 import 'dart:async';
 
+import 'package:flutter/widgets.dart';
 import 'package:test_app/logger_service.dart';
 import 'package:test_app/wallet_connect_const.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 
 /// https://docs.walletconnect.com/api/auth/dapp-usage#request-authentication
+/// https://github.com/WalletConnect/Web3ModalFlutter/issues/122
 final class AuthModal {
+  ///
+  static Web3App? _web3app;
+
+  ///
+  static W3MService? _w3mService;
+
   ///
   static AuthClient? _authorizationClient;
 
@@ -15,38 +22,70 @@ final class AuthModal {
 
   ///
   static Future<void> prepare() async {
-    _authorizationClient = await AuthClient.createInstance(
+    _web3app = await Web3App.createInstance(
       projectId: walletConnectProjectId,
       metadata: walletConnectMetadata,
     );
+
+    /// Only Ethereum or Polygon as available chains
+    W3MChainPresets.chains.removeWhere(
+      (String key, W3MChainInfo value) =>
+          value.chainName != 'Ethereum' && value.chainName != 'Polygon',
+    );
+    _w3mService = W3MService(
+      web3App: _web3app,
+      projectId: walletConnectProjectId,
+      metadata: walletConnectMetadata,
+      includedWalletIds: walletConnectIncluded,
+      /*requiredNamespaces: {
+        'eip155': const W3MNamespace(
+          chains: ['eip155:1'],
+          methods: [
+            MethodConstants.WC_AUTH_REQUEST,
+            "personal_sign",
+          ],
+          events: [
+            "chainChanged",
+            "accountsChanged",
+            "message",
+            "disconnect",
+            "connect",
+          ],
+        ),
+      },*/
+      //optionalNamespaces: {},
+    );
+
+    await _w3mService!.init();
   }
 
   ///
-  static void dispose() {
+  static Future<void> dispose() async {
+    _web3app = null;
+    if (_w3mService?.isConnected ?? false) {
+      await _w3mService!.disconnect();
+    }
+    _w3mService = null;
+
     _authorizationClient = null;
     _authorizationRequest = null;
   }
 
   ///
-  static Future<bool> authorize() async {
+  static Future<bool> authorize(BuildContext context) async {
+    await dispose(); // TODO(Alex): is it necessary?
     await prepare();
     try {
+      await _w3mService!.openModal(context);
+      logInfo(info: 'Modal closed, connection = ${_w3mService!.isConnected}');
+      await Future.delayed(Duration(seconds: 5));
+
+      _w3mService!.launchConnectedWallet();
+
       _authorizationRequest = await _authorizationClient!.request(
         params: authorizationParameters('Try to auth'),
+        pairingTopic: _w3mService!.session!.pairingTopic,
       );
-
-      final String connectionLink =
-          Uri.encodeComponent(_authorizationRequest!.uri.toString());
-
-      final String link = 'trust://wc?uri=$connectionLink';
-      //'https://link.trustwallet.com/wc?uri=$connectionLink';
-      //'metamask://wc?uri=$connectionLink';
-      //'https://metamask.app.link/wc?uri=$connectionLink';
-      //'wc://wc?uri=$connectionLink';
-
-      logInfo(info: 'Link to open for authorization - $link');
-
-      await launchUrlString(link);
 
       final AuthResponse authResponse =
           await _authorizationRequest!.completer.future;
