@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/auth_directly.dart';
+import 'package:test_app/auth_modal.dart';
 import 'package:test_app/auth_web3app.dart';
 
 void main() {
@@ -26,9 +27,7 @@ class MainApp extends StatelessWidget {
               /// On iOS
               /// Endless "Connecting to MetaMask"
               FilledButton(
-                onPressed: () => {
-                  AuthDirectly.authorize('metamask'),
-                },
+                onPressed: () => {AuthDirectly.authorize('metamask')},
                 child: const Text('Metamask directly'),
               ),
 
@@ -38,9 +37,7 @@ class MainApp extends StatelessWidget {
               /// On iOS got error
               /// `JsonRpcError: Method Unsupported (code: 10001)`
               FilledButton(
-                onPressed: () => {
-                  AuthDirectly.authorize('trust'),
-                },
+                onPressed: () => {AuthDirectly.authorize('trust')},
                 child: const Text('Trust directly'),
               ),
               const SizedBox(height: 20),
@@ -48,7 +45,7 @@ class MainApp extends StatelessWidget {
               ///
               const Text('Authorization via modal'),
               FilledButton(
-                onPressed: () => {},
+                onPressed: () => {AuthModal.authorize(context)},
                 child: const Text('Auth via modal'),
               ),
               const SizedBox(height: 20),
@@ -64,9 +61,7 @@ class MainApp extends StatelessWidget {
               /// Success connection, but without sign functionality
               /// after reopening with requestAuth
               FilledButton(
-                onPressed: () => {
-                  AuthWeb3Appp.authorize('metamask'),
-                },
+                onPressed: () => {AuthWeb3Appp.authorize('metamask')},
                 child: const Text('Metamask Web3App'),
               ),
 
@@ -76,9 +71,7 @@ class MainApp extends StatelessWidget {
               /// On iOS got error
               /// `JsonRpcError: Method Unsupported (code: 10001)`
               FilledButton(
-                onPressed: () => {
-                  AuthWeb3Appp.authorize('trust'),
-                },
+                onPressed: () => {AuthWeb3Appp.authorize('trust')},
                 child: const Text('Trust Web3App'),
               ),
             ],
