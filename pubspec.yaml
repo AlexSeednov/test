@@ -10,10 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # Base localization
-  flutter_localizations:
-    sdk: flutter
-
   # https://pub.dev/packages/logger
   logger: ^2.3.0
   

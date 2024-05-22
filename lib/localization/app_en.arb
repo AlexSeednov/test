@@ -1,8 +1,0 @@
-{
-  "@@locale": "en",
-  "@_Common": {},
-  "appTitle": "test",
-  "@appTitle": {
-    "description": "The title of the application"
-  }
-}
