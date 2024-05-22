@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:test_app/auth_directly.dart';
 import 'package:test_app/auth_modal.dart';
 import 'package:test_app/auth_web3app.dart';
@@ -13,6 +15,11 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      /// Provide the generated AppLocalizations to the MaterialApp. This
+      /// allows descendant Widgets to display the correct translations
+      /// depending on the user's locale.
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: Scaffold(
         body: SizedBox.expand(
           child: Column(

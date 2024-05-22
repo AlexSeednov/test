@@ -37,10 +37,10 @@ final class AuthWeb3Appp {
       requiredNamespaces: {
         'eip155': const RequiredNamespace(
           chains: ['eip155:1'],
-          methods: ["personal_sign"],
+          methods: ['personal_sign'],
           events: [
-            "chainChanged",
-            "accountsChanged",
+            'chainChanged',
+            'accountsChanged',
           ],
         ),
       },

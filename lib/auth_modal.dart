@@ -78,7 +78,7 @@ final class AuthModal {
     try {
       await _w3mService!.openModal(context);
       logInfo(info: 'Modal closed, connection = ${_w3mService!.isConnected}');
-      await Future.delayed(Duration(seconds: 5));
+      await Future<void>.delayed(const Duration(seconds: 5));
 
       _w3mService!.launchConnectedWallet();
 

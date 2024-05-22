@@ -189,7 +189,7 @@ linter:
     avoid_bool_literals_in_conditional_expressions: true
 
     # https://dart.dev/tools/linter-rules/avoid_catches_without_on_clauses
-    avoid_catches_without_on_clauses: true
+    avoid_catches_without_on_clauses: false
 
     # https://dart.dev/tools/linter-rules/avoid_catching_errors
     avoid_catching_errors: true

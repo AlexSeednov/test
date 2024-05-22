@@ -9,9 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
-  # https://pub.dev/packages/flutter_lints
-  flutter_lints: ^4.0.0
+
+  # Base localization
+  flutter_localizations:
+    sdk: flutter
 
   # https://pub.dev/packages/logger
   logger: ^2.3.0
@@ -23,8 +24,14 @@ dependencies:
   web3modal_flutter: 3.2.0
 
 dev_dependencies:
+  # https://pub.dev/packages/flutter_lints
+  flutter_lints: ^4.0.0
+
   flutter_test:
     sdk: flutter
 
 flutter:
   uses-material-design: true
+
+  # Enable generation of localized Strings from arb files.
+  generate: true
