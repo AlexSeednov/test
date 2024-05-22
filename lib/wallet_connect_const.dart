@@ -1,7 +1,7 @@
 import 'package:web3modal_flutter/web3modal_flutter.dart';
 
 ///
-const String walletConnectProjectId = '7fe1f87883239d06cbbbbbab26d295d9';
+const String walletConnectProjectId = 'Insert your Project ID here';
 
 ///
 const PairingMetadata walletConnectMetadata = PairingMetadata(
