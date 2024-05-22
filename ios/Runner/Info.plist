@@ -45,5 +45,23 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<!-- Wallet Connect -->
+				<string>bricktest</string>
+			</array>
+		</dict>
+	</array>
+	<!-- Wallet Connect -->
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+	  <string>metamask</string>
+	  <string>trust</string>
+	</array>
 </dict>
 </plist>
