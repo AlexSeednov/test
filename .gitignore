@@ -30,6 +30,12 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+.packages
+pubspec.lock
+macos/Flutter/GeneratedPluginRegistrant.swift
+
+# Web related
+lib/generated_plugin_registrant.dart
 
 # Symbolication related
 app.*.symbols
@@ -41,6 +47,16 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+ios/Podfile.lock
+pubspec.lock
+
+# Unsupported platforms
+linux
+macos
+windows
 
 # FVM Version Cache
 .fvm/
+
+# Flavors build files
+ios/firebase_app_id_file.json
