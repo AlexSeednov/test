@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
               onPressed: () => {
                 AuthDirectly.authorize('trust'),
               },
-              child: const Text('Trus Auth directly'),
+              child: const Text('Trust Auth directly'),
             ),
             FilledButton(
               onPressed: () => {},
