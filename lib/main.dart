@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_app/auth_directly.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,10 +13,14 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text('Test WC app'),
             FilledButton(
-              onPressed: () => {},
+              onPressed: () => {
+                AuthDirectly.authorize(),
+              },
               child: const Text('Auth directly'),
             ),
             FilledButton(

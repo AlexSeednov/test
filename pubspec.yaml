@@ -13,6 +13,12 @@ dependencies:
   # https://pub.dev/packages/flutter_lints
   flutter_lints: ^4.0.0
 
+  # https://pub.dev/packages/logger
+  logger: ^2.3.0
+  
+  # https://pub.dev/packages/url_launcher
+  url_launcher: ^6.2.5
+
   # https://pub.dev/packages/web3modal_flutter
   web3modal_flutter: 3.2.0
 
