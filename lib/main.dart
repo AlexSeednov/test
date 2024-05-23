@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:test_app/auth_directly.dart';
 import 'package:test_app/auth_modal.dart';
+import 'package:test_app/auth_modal_sign.dart';
 import 'package:test_app/auth_web3app.dart';
 
 void main() {
@@ -71,6 +72,25 @@ class MainScreen extends StatelessWidget {
             FilledButton(
               onPressed: () => {AuthModal.authorize(context)},
               child: const Text('Auth via modal'),
+            ),
+            const SizedBox(height: 20),
+
+            /// On Android
+            /// Trust
+            ///
+            /// Metamask
+            ///
+            ///
+            ///
+            /// On iOS
+            /// Trust
+            ///
+            /// Metamask
+            ///
+            const Text('Authorization by Sign via modal'),
+            FilledButton(
+              onPressed: () => {AuthModalSign.authorize(context)},
+              child: const Text('Auth by Sign via modal'),
             ),
             const SizedBox(height: 20),
 
