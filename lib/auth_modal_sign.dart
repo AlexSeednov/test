@@ -69,6 +69,11 @@ final class AuthModalSign {
     try {
       await _w3mService!.openModal(context);
       logInfo(info: 'Modal closed, connection = ${_w3mService!.isConnected}');
+      if (!_w3mService!.isConnected) {
+        logInfo(info: 'Connection cancelled');
+        return false;
+      }
+
       await Future<void>.delayed(const Duration(seconds: 5));
 
       _w3mService!.launchConnectedWallet();
@@ -82,7 +87,10 @@ final class AuthModalSign {
         ),
       ) as String?;
 
-      if (signedMessage == null) return false;
+      if (signedMessage == null) {
+        logInfo(info: 'Authorization cancelled');
+        return false;
+      }
 
       logInfo(info: 'Authorization succeed');
       logInfo(info: 'Address ${_w3mService!.session!.address}');
